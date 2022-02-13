@@ -13,12 +13,14 @@ import 'presentation/home/pages/homepage.dart';
 //import 'firebase_options.dart';
 
 Future<void> main() async {
-   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
-    statusBarBrightness: Brightness.dark,
-    statusBarIconBrightness: Brightness.dark,
+    statusBarBrightness: Brightness.light,
+    statusBarIconBrightness: Brightness.light,
+    systemNavigationBarColor: Colors.transparent,
+    systemNavigationBarDividerColor: Colors.transparent,
   ));
 
   await Firebase.initializeApp();
@@ -26,12 +28,10 @@ Future<void> main() async {
   await authRepository.user.first;
 
   BlocOverrides.runZoned(
-    () => runApp(App(
-        authRepository: authRepository)),
+    () => runApp(App(authRepository: authRepository)),
     blocObserver: AppBlocObserver(),
   );
 }
-
 
 class App extends StatelessWidget {
   final AuthRepository _authRepository;
@@ -58,12 +58,12 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     final _status = context.select((AppBloc bloc) => bloc.state.status);
-    
+
     return MaterialApp(
-      title: 'Meet',
-      debugShowCheckedModeBanner: false,
-      home: _status == AppStatus.authenticated  ? HomePage(): const AuthPage());
+        title: 'Meet',
+        debugShowCheckedModeBanner: false,
+        home:
+            _status == AppStatus.authenticated ? HomePage() : const AuthPage());
   }
 }

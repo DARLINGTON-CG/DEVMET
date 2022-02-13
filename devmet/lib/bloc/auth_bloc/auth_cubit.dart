@@ -21,15 +21,14 @@ class AuthCubit extends Cubit<AuthState> {
         errorMessage: e.message,
         status: FormzStatus.submissionFailure,
       ));
-    } catch (_) {
+     
+    } catch (e) {
+     
       emit(state.copyWith(status: FormzStatus.submissionFailure));
     }
   }
 
-  Future<void> logOut() async 
-  {
-    
-  }
+  Future<void> logOut() async {}
 
   Future<void> deleteAccount() async {
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
