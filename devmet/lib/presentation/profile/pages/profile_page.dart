@@ -73,7 +73,7 @@ class ProfilePage extends StatelessWidget {
                     "Donat Twerski",
                     style: GoogleFonts.lato(
                       color: Colors.white,
-                      fontSize: 19,
+                      fontSize: 17,
                     ),
                   ),
                 ],
@@ -96,7 +96,7 @@ class ProfilePage extends StatelessWidget {
                   title: Text(
                     "Data",
                     style: GoogleFonts.lato(
-                      fontSize: 18,
+                      fontSize: 17,
                       color: Color(0xFFF1F1F1),
                     ),
                   ),
@@ -116,7 +116,7 @@ class ProfilePage extends StatelessWidget {
                   title: Text(
                     "Friends",
                     style: GoogleFonts.lato(
-                      fontSize: 18,
+                      fontSize: 17,
                       color: Color(0xFFF1F1F1),
                     ),
                   ),
@@ -137,7 +137,7 @@ class ProfilePage extends StatelessWidget {
                   title: Text(
                     "Chats",
                     style: GoogleFonts.lato(
-                      fontSize: 18,
+                      fontSize: 17,
                       color: Color(0xFFF1F1F1),
                     ),
                   ),
@@ -158,7 +158,7 @@ class ProfilePage extends StatelessWidget {
                   title: Text(
                     "Account Settings",
                     style: GoogleFonts.lato(
-                      fontSize: 18,
+                      fontSize: 17,
                       color: Color(0xFFF1F1F1),
                     ),
                   ),

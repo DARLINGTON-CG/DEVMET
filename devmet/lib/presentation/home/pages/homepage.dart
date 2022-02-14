@@ -8,12 +8,19 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../bloc/app_bloc/app_bloc.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
-  static Page page() => MaterialPage<void>(child: HomePage());
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late Animation<double> animation;
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +29,159 @@ class HomePage extends StatelessWidget {
       backgroundColor: const Color(0xFF131112),
       extendBody: true,
       resizeToAvoidBottomInset: false,
+      bottomNavigationBar: NavigationBarTheme(
+        data: const NavigationBarThemeData(
+          backgroundColor: Color(0xFF131112),
+          indicatorColor: Colors.transparent,
+        ),
+        child: NavigationBar(
+          selectedIndex: index,
+          onDestinationSelected: (int selected) {
+            setState(() {
+              index = selected;
+            });
+          },
+          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+          destinations: [
+            Stack(
+              children: [
+                Center(
+                  child: AnimatedOpacity(
+                    opacity: index == 0 ? 1 : 0,
+                    curve: Curves.easeInOut,
+                    duration: const Duration(milliseconds: 600),
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFE3F6FD),
+                          borderRadius: BorderRadius.circular(16)),
+                    ),
+                  ),
+                ),
+                const NavigationDestination(
+                  icon: Icon(
+                    Icons.grid_view,
+                    color: Color(0xFFF1F1F1),
+                  ),
+                  label: "",
+                  selectedIcon: Icon(
+                    Icons.grid_view,
+                    color: Color(0xFF131112),
+                  ),
+                ),
+              ],
+            ),
+            Stack(
+              children: [
+                Center(
+                  child: AnimatedOpacity(
+                    opacity: index == 1 ? 1 : 0,
+                    curve: Curves.easeInOut,
+                    duration: const Duration(milliseconds: 600),
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFE3F6FD),
+                          borderRadius: BorderRadius.circular(16)),
+                    ),
+                  ),
+                ),
+                const NavigationDestination(
+                  icon: Icon(
+                    Icons.chat_bubble_rounded,
+                    color: Color(0xFFF1F1F1),
+                  ),
+                  label: "",
+                  selectedIcon: Icon(
+                    Icons.chat_bubble_rounded,
+                    color: Color(0xFF131112),
+                  ),
+                ),
+              ],
+            ),
+            FloatingActionButton.small(
+              key: UniqueKey(),
+              onPressed: () {
+                ScaffoldMessenger.of(context)
+                    .showMaterialBanner(
+                      MaterialBanner(content: Text("Hello"), actions: [
+                        Icon(Icons.add)
+                      ],
+                      elevation: 30,
+                      
+                      )
+                    );
+              },
+              child: const Icon(
+                Icons.add,
+              ),
+              backgroundColor: const Color.fromARGB(255, 43, 241, 232),
+            ),
+            Stack(
+              children: [
+                Center(
+                  child: AnimatedOpacity(
+                    opacity: index == 3 ? 1 : 0,
+                    duration: const Duration(milliseconds: 600),
+                    curve: Curves.easeInOut,
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFE3F6FD),
+                          borderRadius: BorderRadius.circular(16)),
+                    ),
+                  ),
+                ),
+                const NavigationDestination(
+                  icon: Icon(
+                    Icons.auto_graph_rounded,
+                    color: Color(0xFFF1F1F1),
+                  ),
+                  label: "",
+                  selectedIcon: Icon(
+                    Icons.auto_graph_rounded,
+                    color: Color(0xFF131112),
+                  ),
+                ),
+              ],
+            ),
+            Stack(
+              children: [
+                Center(
+                  child: AnimatedOpacity(
+                    opacity: index == 4 ? 1 : 0,
+                    duration: const Duration(milliseconds: 600),
+                    curve: Curves.easeInOut,
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFE3F6FD),
+                          borderRadius: BorderRadius.circular(16)),
+                    ),
+                  ),
+                ),
+                const NavigationDestination(
+                  icon: Icon(
+                    Icons.account_balance_wallet_rounded,
+                    color: Color(0xFFF1F1F1),
+                  ),
+                  label: "",
+                  selectedIcon: Icon(
+                    Icons.account_balance_wallet_rounded,
+                    color: Color(0xFF131112),
+                  ),
+                ),
+              ],
+            ),
+          ],
+          backgroundColor: const Color(0xFF131112),
+          height: 60,
+        ),
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -131,7 +291,36 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-       
+          SliverGrid(
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 200.0,
+              mainAxisSpacing: 10.0,
+              crossAxisSpacing: 10.0,
+              childAspectRatio: 4.0,
+            ),
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return Container(
+                  alignment: Alignment.center,
+                  color: Colors.teal[100 * (index % 9)],
+                  child: Text('Grid Item $index'),
+                );
+              },
+              childCount: 4,
+            ),
+          ),
+          SliverFixedExtentList(
+            itemExtent: 50.0,
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return Container(
+                  alignment: Alignment.center,
+                  color: Colors.lightBlue[100 * (index % 9)],
+                  child: Text('List Item $index'),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );

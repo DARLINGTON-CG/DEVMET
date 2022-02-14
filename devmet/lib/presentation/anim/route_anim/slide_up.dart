@@ -11,8 +11,8 @@ class SlideUp extends PageRouteBuilder {
             ) {
               return page;
             },
-            transitionDuration: const Duration(milliseconds: 600),
-            reverseTransitionDuration: const Duration(milliseconds: 600),
+            transitionDuration: const Duration(milliseconds: 500),
+            reverseTransitionDuration: const Duration(milliseconds: 400),
             transitionsBuilder: (BuildContext context,
                 Animation<double> firstAnim,
                 Animation<double> secAnim,
