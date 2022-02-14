@@ -15,16 +15,19 @@ class LoginButton extends StatelessWidget {
             const EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
         width: 200,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: Color(0xff333232)),
+            borderRadius: BorderRadius.circular(10), color: Color(0xffF08700)),
         child: Center(
           child: Stack(
             children: [
-              Center(
-                child: Text("CONTINUE",
-                    style: GoogleFonts.breeSerif(
-                        fontSize: 16,
-                        color: const Color(0xFFFFFFFF))),
-              ),
+             
+                    Positioned(
+                      right: 50,
+                      top: 4,
+                      child: Text("CONTINUE",
+                          style: GoogleFonts.lato(
+                              fontSize: 16, color: const Color(0xFFFFFFFF))),
+                    ),
+                
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -33,7 +36,7 @@ class LoginButton extends StatelessWidget {
                     padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(40),
-                      color: Colors.white.withOpacity(0.3),
+                      color: Colors.black.withOpacity(0.2),
                     ),
                     child: const Center(
                       child: Icon(

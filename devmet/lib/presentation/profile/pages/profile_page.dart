@@ -7,11 +7,11 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0E263E),
+      backgroundColor: const Color(0xFF131112),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            backgroundColor: const Color(0xFF0E263E),
+            backgroundColor: const Color(0xFF131112),
             title: Text("Profile",
                 style: GoogleFonts.lato(
                   fontSize: 19,
@@ -88,8 +88,10 @@ class ProfilePage extends StatelessWidget {
                     height: 80,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: const Color(0xFFE3F6FD)),
-                    child: Center(child: FaIcon(FontAwesomeIcons.database,color: Colors.black)),
+                        color: const Color(0xFF119DA4)),
+                    child: Center(
+                        child: FaIcon(FontAwesomeIcons.database,
+                            color: Colors.black)),
                   ),
                   title: Text(
                     "Data",
@@ -107,8 +109,9 @@ class ProfilePage extends StatelessWidget {
                     height: 80,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: const Color(0xFFE8DEF5)),
-                    child: Center(child: FaIcon(Icons.face,color:Colors.black)),
+                        color: const Color(0xFFFFC857)),
+                    child:
+                        Center(child: FaIcon(Icons.face, color: Colors.black)),
                   ),
                   title: Text(
                     "Friends",
@@ -126,8 +129,10 @@ class ProfilePage extends StatelessWidget {
                     height: 80,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: const Color(0xFFE3F6FD)),
-                    child: Center(child: FaIcon(FontAwesomeIcons.facebookMessenger,color: Colors.black)),
+                        color: const Color(0xFF98F5E1)),
+                    child: Center(
+                        child: FaIcon(FontAwesomeIcons.facebookMessenger,
+                            color: Colors.black)),
                   ),
                   title: Text(
                     "Chats",
@@ -145,8 +150,10 @@ class ProfilePage extends StatelessWidget {
                     height: 80,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: const Color(0xFFE3F6FD)),
-                    child: Center(child: FaIcon(FontAwesomeIcons.wrench,color: Colors.black)),
+                        color: const Color(0xFF89FC00)),
+                    child: Center(
+                        child: FaIcon(FontAwesomeIcons.wrench,
+                            color: Colors.black)),
                   ),
                   title: Text(
                     "Account Settings",
@@ -158,7 +165,6 @@ class ProfilePage extends StatelessWidget {
                   subtitle: Text("System updates and alerts",
                       style:
                           GoogleFonts.lato(fontSize: 16, color: Colors.grey))),
-             
             ]),
           )
         ],

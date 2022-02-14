@@ -26,7 +26,7 @@ class AuthPage extends StatelessWidget {
       //   elevation: 0.0,
       //   backgroundColor: Colors.white,
       // ),
-      backgroundColor: const Color(0xFF07070A),
+      backgroundColor: const Color(0xFF131112),
       body: BlocProvider<AuthCubit>(
         create: (_) => AuthCubit(context.read<AuthRepository>()),
         child: Builder(builder: (context) {
@@ -55,11 +55,11 @@ class AuthPage extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         left: 25, right: 25, top: 2, bottom: 30),
                     child: Text(
-                        "The best place to share great ideas and make friends.",
+                        "The best place to share great ideas and make friends. Begin your journey by clicking continue.",
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.breeSerif(
-                          color: const Color(0xFFFFFFFF),
-                          fontSize: 25,
+                        style: GoogleFonts.lato(
+                          color: const Color(0xFFF1F1F1),
+                          fontSize: 20,
                           // fontWeight: FontWeight.bold,
                         )),
                   ),
