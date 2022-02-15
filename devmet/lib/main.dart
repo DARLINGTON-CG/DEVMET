@@ -63,7 +63,9 @@ class AppView extends StatelessWidget {
     return MaterialApp(
         title: 'Meet',
         debugShowCheckedModeBanner: false,
-        home:
-            _status == AppStatus.authenticated ? HomePage() : const AuthPage());
+        theme: ThemeData(),
+        home: _status == AppStatus.authenticated
+            ? const HomePage()
+            : const AuthPage());
   }
 }

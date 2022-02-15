@@ -1,4 +1,5 @@
 import 'package:devmet/presentation/anim/route_anim/slide_up.dart';
+import 'package:devmet/presentation/home/widgets/custom.dart';
 import 'package:devmet/presentation/profile/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: const Color(0xFF131112),
-      extendBody: true,
+      extendBody: false,
       resizeToAvoidBottomInset: false,
       bottomNavigationBar: NavigationBarTheme(
         data: const NavigationBarThemeData(
@@ -103,17 +104,7 @@ class _HomePageState extends State<HomePage> {
             ),
             FloatingActionButton.small(
               key: UniqueKey(),
-              onPressed: () {
-                ScaffoldMessenger.of(context)
-                    .showMaterialBanner(
-                      MaterialBanner(content: Text("Hello"), actions: [
-                        Icon(Icons.add)
-                      ],
-                      elevation: 30,
-                      
-                      )
-                    );
-              },
+              onPressed: () {},
               child: const Icon(
                 Icons.add,
               ),
@@ -187,8 +178,9 @@ class _HomePageState extends State<HomePage> {
           SliverAppBar(
             backgroundColor: const Color(0xFF131112),
             centerTitle: true,
-            title:
-                Text("All Activities", style: GoogleFonts.lato(fontSize: 18)),
+            title: Text("All Activities",
+                style: GoogleFonts.alegreya(
+                    fontSize: 18, fontWeight: FontWeight.bold)),
             leading: Center(
               child: GestureDetector(
                 onTap: () =>
@@ -196,8 +188,9 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   width: 38,
                   height: 38,
-                  decoration: const BoxDecoration(
-                      color: Color(0xFFf1f1f1), shape: BoxShape.circle),
+                  decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.2),
+                      shape: BoxShape.circle),
                 ),
               ),
             ),
@@ -239,7 +232,7 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           const FaIcon(FontAwesomeIcons.codeBranch),
                           const SizedBox(width: 10),
-                          Text("All Actvities", style: GoogleFonts.lato()),
+                          Text("All Actvities", style: GoogleFonts.alegreya()),
                           const SizedBox(width: 5),
                           const Icon(
                             Icons.cancel_rounded,
@@ -259,7 +252,7 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           const Icon(Icons.event),
                           const SizedBox(width: 10),
-                          Text("Events", style: GoogleFonts.lato()),
+                          Text("Events", style: GoogleFonts.alegreya()),
                           const SizedBox(width: 5),
                           const Icon(
                             Icons.cancel_rounded,
@@ -279,7 +272,7 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           const Icon(Icons.mic_rounded),
                           const SizedBox(width: 10),
-                          Text("Podcasts", style: GoogleFonts.lato()),
+                          Text("Podcasts", style: GoogleFonts.alegreya()),
                           const SizedBox(width: 5),
                           const Icon(
                             Icons.cancel_rounded,
@@ -291,36 +284,84 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          SliverGrid(
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200.0,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0,
-              childAspectRatio: 4.0,
+          SliverToBoxAdapter(
+              child: Container(
+            margin: const EdgeInsets.only(top: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 12),
+                  child: Text("Events",
+                      style: GoogleFonts.alegreya(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFFFFFFF))),
+                ),
+                Container(
+                  height: 150,
+                  decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(10)),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                ),
+              ],
             ),
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Container(
-                  alignment: Alignment.center,
-                  color: Colors.teal[100 * (index % 9)],
-                  child: Text('Grid Item $index'),
-                );
-              },
-              childCount: 4,
-            ),
-          ),
-          SliverFixedExtentList(
-            itemExtent: 50.0,
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Container(
-                  alignment: Alignment.center,
-                  color: Colors.lightBlue[100 * (index % 9)],
-                  child: Text('List Item $index'),
-                );
-              },
-            ),
-          ),
+          )),
+          SliverToBoxAdapter(
+              child: Padding(
+            padding: const EdgeInsets.only(left: 12),
+            child: Text("Podcasts",
+                style: GoogleFonts.alegreya(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFFFFFFFF))),
+          )),
+          SliverList(
+              delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+              return Container(
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 120,
+                      height: 150,
+                      margin: EdgeInsets.only(right: 20),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey.withOpacity(0.2)),
+                    ),
+                    Expanded(
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                          Text(
+                            "Arts and Humanities",
+                            style: GoogleFonts.alegreya(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFFFFFFF)),
+                          ),
+                          Text(
+                            "Inspiration of young minds to become creative.",
+                            style: GoogleFonts.alegreya(
+                                fontSize: 16, color: Color(0xABFFFFFF)),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Icon(Icons.add_circle)
+                        ]))
+                  ],
+                ),
+              );
+            },
+            childCount: 10,
+          )),
         ],
       ),
     );

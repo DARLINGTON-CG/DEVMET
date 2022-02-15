@@ -13,7 +13,7 @@ class ProfilePage extends StatelessWidget {
           SliverAppBar(
             backgroundColor: const Color(0xFF131112),
             title: Text("Profile",
-                style: GoogleFonts.lato(
+                style: GoogleFonts.alegreya(
                   fontSize: 19,
                 )),
             centerTitle: true,
@@ -26,10 +26,10 @@ class ProfilePage extends StatelessWidget {
                   child: const Center(
                       child: FaIcon(
                     FontAwesomeIcons.angleLeft,
-                    color: Color(0xFF0E263E),
+                    color: Color(0xFFF1F1F1),
                   )),
                   decoration: BoxDecoration(
-                      color: const Color(0xFFf1f1f1),
+                      color: Colors.grey.withOpacity(0.4),
                       borderRadius: BorderRadius.circular(10)),
                 ),
               ),
@@ -65,15 +65,15 @@ class ProfilePage extends StatelessWidget {
                     height: 120,
                     margin: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF1F1F1),
+                      color:  Colors.grey.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(40),
                     ),
                   ),
                   Text(
                     "Donat Twerski",
-                    style: GoogleFonts.lato(
+                    style: GoogleFonts.alegreya(
                       color: Colors.white,
-                      fontSize: 17,
+                      fontSize: 19,
                     ),
                   ),
                 ],
@@ -95,14 +95,14 @@ class ProfilePage extends StatelessWidget {
                   ),
                   title: Text(
                     "Data",
-                    style: GoogleFonts.lato(
-                      fontSize: 17,
+                    style: GoogleFonts.alegreya(
+                      fontSize: 18,
                       color: Color(0xFFF1F1F1),
                     ),
                   ),
                   subtitle: Text("Personal user data",
                       style:
-                          GoogleFonts.lato(fontSize: 16, color: Colors.grey))),
+                          GoogleFonts.alegreya(fontSize: 17, color: Colors.grey))),
               ListTile(
                   leading: Container(
                     width: 55,
@@ -115,14 +115,14 @@ class ProfilePage extends StatelessWidget {
                   ),
                   title: Text(
                     "Friends",
-                    style: GoogleFonts.lato(
-                      fontSize: 17,
+                    style: GoogleFonts.alegreya(
+                      fontSize: 18,
                       color: Color(0xFFF1F1F1),
                     ),
                   ),
                   subtitle: Text("Friendly system users",
                       style:
-                          GoogleFonts.lato(fontSize: 16, color: Colors.grey))),
+                          GoogleFonts.alegreya(fontSize: 17, color: Colors.grey))),
               ListTile(
                   leading: Container(
                     width: 55,
@@ -136,14 +136,14 @@ class ProfilePage extends StatelessWidget {
                   ),
                   title: Text(
                     "Chats",
-                    style: GoogleFonts.lato(
-                      fontSize: 17,
+                    style: GoogleFonts.alegreya(
+                      fontSize: 18,
                       color: Color(0xFFF1F1F1),
                     ),
                   ),
                   subtitle: Text("Friendly system users",
                       style:
-                          GoogleFonts.lato(fontSize: 16, color: Colors.grey))),
+                          GoogleFonts.alegreya(fontSize: 17, color: Colors.grey))),
               ListTile(
                   leading: Container(
                     width: 55,
@@ -157,14 +157,14 @@ class ProfilePage extends StatelessWidget {
                   ),
                   title: Text(
                     "Account Settings",
-                    style: GoogleFonts.lato(
-                      fontSize: 17,
+                    style: GoogleFonts.alegreya(
+                      fontSize: 18,
                       color: Color(0xFFF1F1F1),
                     ),
                   ),
                   subtitle: Text("System updates and alerts",
                       style:
-                          GoogleFonts.lato(fontSize: 16, color: Colors.grey))),
+                          GoogleFonts.alegreya(fontSize: 17, color: Colors.grey))),
             ]),
           )
         ],
