@@ -7,15 +7,11 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF131112),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             backgroundColor: const Color(0xFF131112),
-            title: Text("Profile",
-                style: GoogleFonts.alegreya(
-                  fontSize: 19,
-                )),
+            title: const Text("Profile"),
             centerTitle: true,
             leading: Center(
               child: GestureDetector(
@@ -65,7 +61,7 @@ class ProfilePage extends StatelessWidget {
                     height: 120,
                     margin: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                      color:  Colors.grey.withOpacity(0.2),
+                      color: Colors.grey.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(40),
                     ),
                   ),
@@ -101,8 +97,8 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text("Personal user data",
-                      style:
-                          GoogleFonts.alegreya(fontSize: 17, color: Colors.grey))),
+                      style: GoogleFonts.alegreya(
+                          fontSize: 17, color: Colors.grey))),
               ListTile(
                   leading: Container(
                     width: 55,
@@ -121,8 +117,8 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text("Friendly system users",
-                      style:
-                          GoogleFonts.alegreya(fontSize: 17, color: Colors.grey))),
+                      style: GoogleFonts.alegreya(
+                          fontSize: 17, color: Colors.grey))),
               ListTile(
                   leading: Container(
                     width: 55,
@@ -142,8 +138,8 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text("Friendly system users",
-                      style:
-                          GoogleFonts.alegreya(fontSize: 17, color: Colors.grey))),
+                      style: GoogleFonts.alegreya(
+                          fontSize: 17, color: Colors.grey))),
               ListTile(
                   leading: Container(
                     width: 55,
@@ -163,8 +159,8 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text("System updates and alerts",
-                      style:
-                          GoogleFonts.alegreya(fontSize: 17, color: Colors.grey))),
+                      style: GoogleFonts.alegreya(
+                          fontSize: 17, color: Colors.grey))),
             ]),
           )
         ],

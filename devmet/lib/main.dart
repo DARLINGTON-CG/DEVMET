@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'bloc/app_bloc/app_bloc.dart';
 import 'bloc/app_bloc/app_bloc_observer.dart';
@@ -63,7 +64,23 @@ class AppView extends StatelessWidget {
     return MaterialApp(
         title: 'Meet',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(),
+        theme: ThemeData(
+          appBarTheme: AppBarTheme(
+              backgroundColor: const Color(0xFF131112),
+              actionsIconTheme:
+                  const IconThemeData(color: Color(0xFFf1f1f1), size: 22),
+              titleTextStyle: GoogleFonts.alegreya(
+                  fontSize: 20, fontWeight: FontWeight.bold)),
+          scaffoldBackgroundColor: const Color(0xFF131112),
+          androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
+          navigationBarTheme: const NavigationBarThemeData(
+            backgroundColor: Color(0xFF131112),
+            indicatorColor: Colors.transparent,
+           labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+           height: 60
+            
+          ),
+        ),
         home: _status == AppStatus.authenticated
             ? const HomePage()
             : const AuthPage());
