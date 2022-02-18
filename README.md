@@ -1,2 +1,3 @@
-# DEVMET
-DevMet is a place for developers to socialize.
+# devmet
+
+A platform for developers to meet
