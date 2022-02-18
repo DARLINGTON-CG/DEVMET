@@ -77,7 +77,8 @@ class AuthRepository {
           .reauthenticateWithCredential(credential);
 
       await FirebaseAuth.instance.currentUser!.delete();
-    }  catch (e) {
+      await GoogleSignIn.standard().signOut();
+    } catch (e) {
       throw AccountDeletionError();
     }
   }

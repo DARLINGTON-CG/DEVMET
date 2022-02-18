@@ -11,47 +11,17 @@ class LoginButton extends StatelessWidget {
     return GestureDetector(
       onTap: func,
       child: Container(
-        padding:
-            const EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
-        width: 200,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: Color(0xffF08700)),
-        child: Center(
-          child: Stack(
-            children: [
-             
-                    Positioned(
-                      right: 50,
-                      top: 4,
-                      child: Text("CONTINUE",
-                          style: GoogleFonts.lato(
-                              fontSize: 16, color: const Color(0xFFFFFFFF))),
-                    ),
-                
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      color: Colors.black.withOpacity(0.2),
-                    ),
-                    child: const Center(
-                      child: Icon(
-                        Icons.arrow_forward_outlined,
-                        color: Colors.white,
-                        size: 18,
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
-      ),
+          padding:const EdgeInsets.all(20),
+          margin: const EdgeInsets.all(15),
+          width: 90,
+          height: 90,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color:const Color(0xffe3f6fd), shape: BoxShape.circle),
+          child: Text(
+            "Start",
+            style: GoogleFonts.alegreya(fontSize: 20, color: Colors.black),
+          )),
     );
   }
 }

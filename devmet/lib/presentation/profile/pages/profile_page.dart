@@ -1,4 +1,6 @@
 import 'package:badges/badges.dart';
+import 'package:devmet/presentation/anim/route_anim/slide_up.dart';
+import 'package:devmet/presentation/profile/pages/account_settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -151,6 +153,7 @@ class ProfilePage extends StatelessWidget {
                         child: FaIcon(FontAwesomeIcons.wrench,
                             color: Colors.black)),
                   ),
+                  onTap: () => Navigator.of(context).push(SlideUp(page: AccountSettingsPage())),
                   title: Text(
                     "Account Settings",
                     style: GoogleFonts.alegreya(
