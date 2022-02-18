@@ -27,7 +27,7 @@ class ProfilePage extends StatelessWidget {
                     color: Color(0xFFF1F1F1),
                   )),
                   decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.4),
+                      color: Colors.grey.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(10)),
                 ),
               ),
@@ -78,6 +78,7 @@ class ProfilePage extends StatelessWidget {
               )),
             ),
           ),
+          
           SliverFillRemaining(
             child: Column(children: [
               ListTile(

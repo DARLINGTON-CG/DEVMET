@@ -90,16 +90,17 @@ class _HomePageState extends State<HomePage> {
       ),
       body: CustomScrollView(
         slivers: [
+        
           SliverToBoxAdapter(
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: 50,
+              height: 52,
               padding: const EdgeInsets.all(5),
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
                   Container(
-                      height: 50,
+                      height: 52,
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
@@ -107,13 +108,16 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const FaIcon(FontAwesomeIcons.codeBranch),
+                          const Icon(Icons.all_inclusive_rounded),
                           const SizedBox(width: 10),
-                          Text("All Actvities", style: GoogleFonts.alegreya()),
+                          Text("All Actvities",
+                              style: GoogleFonts.alegreya(
+                                  color: Colors.black, fontSize: 16)),
                           const SizedBox(width: 5),
                           const Icon(
                             Icons.cancel_rounded,
                             size: 20,
+                            color: Colors.black,
                           )
                         ],
                       )),
@@ -129,11 +133,14 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           const Icon(Icons.event),
                           const SizedBox(width: 10),
-                          Text("Events", style: GoogleFonts.alegreya()),
+                          Text("Events",
+                              style: GoogleFonts.alegreya(
+                                  color: Colors.black, fontSize: 16)),
                           const SizedBox(width: 5),
                           const Icon(
                             Icons.cancel_rounded,
                             size: 20,
+                            color: Colors.black,
                           )
                         ],
                       )),
@@ -149,11 +156,14 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           const Icon(Icons.mic_rounded),
                           const SizedBox(width: 10),
-                          Text("Podcasts", style: GoogleFonts.alegreya()),
+                          Text("Podcasts",
+                              style: GoogleFonts.alegreya(
+                                  color: Colors.black, fontSize: 16)),
                           const SizedBox(width: 5),
                           const Icon(
                             Icons.cancel_rounded,
                             size: 20,
+                            color: Colors.black,
                           )
                         ],
                       )),

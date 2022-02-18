@@ -72,17 +72,19 @@ class AppView extends StatelessWidget {
               titleTextStyle: GoogleFonts.alegreya(
                   fontSize: 20, fontWeight: FontWeight.bold)),
           scaffoldBackgroundColor: const Color(0xFF131112),
-          androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
           navigationBarTheme: const NavigationBarThemeData(
-            backgroundColor: Color(0xFF131112),
-            indicatorColor: Colors.transparent,
-           labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-           height: 60
-            
-          ),
+              backgroundColor: Color(0xFF131112),
+              indicatorColor: Colors.transparent,
+              labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+              height: 60),
+          
+        
         ),
-        home: _status == AppStatus.authenticated
-            ? const HomePage()
-            : const AuthPage());
+        //Temp to edit the homepage
+        // home: _status == AppStatus.authenticated
+        //     ? const HomePage()
+        //     : const AuthPage()
+        home: const HomePage());
   }
 }

@@ -15,7 +15,6 @@ class AuthPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: const Color(0xFF131112),
       body: BlocProvider<AuthCubit>(
         create: (_) => AuthCubit(context.read<AuthRepository>()),
         child: Builder(builder: (context) {
