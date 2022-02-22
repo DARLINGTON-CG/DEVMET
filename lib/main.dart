@@ -78,13 +78,10 @@ class AppView extends StatelessWidget {
               indicatorColor: Colors.transparent,
               labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
               height: 60),
-          
-        
+          splashColor: Colors.transparent,
         ),
-        //Temp to edit the homepage
-        // home: _status == AppStatus.authenticated
-        //     ? const HomePage()
-        //     : const AuthPage()
-        home: const HomePage());
+        home: _status == AppStatus.authenticated
+            ? const HomePage()
+            : const AuthPage());
   }
 }
