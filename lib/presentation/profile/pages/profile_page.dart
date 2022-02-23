@@ -6,14 +6,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
-        slivers: [
+        slivers: <Widget> [
           SliverAppBar(
             backgroundColor: const Color(0xFF131112),
-            title: const Text("Profile"),
+            title: const Text('Profile'),
             centerTitle: true,
             leading: Center(
               child: GestureDetector(
@@ -33,7 +35,7 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             pinned: true,
-            actions: [
+            actions:<Widget> [
               IconButton(
                   onPressed: () {},
                   icon: Badge(
@@ -57,7 +59,7 @@ class ProfilePage extends StatelessWidget {
               child: Center(
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: <Widget> [
                   Container(
                     width: 120,
                     height: 120,
@@ -68,7 +70,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "Donat Twerski",
+                    'Donat Twerski',
                     style: GoogleFonts.alegreya(
                       color: Colors.white,
                       fontSize: 19,
@@ -80,7 +82,7 @@ class ProfilePage extends StatelessWidget {
           ),
           
           SliverFillRemaining(
-            child: Column(children: [
+            child: Column(children: <Widget>[
               ListTile(
                   leading: Container(
                     width: 55,
@@ -88,18 +90,18 @@ class ProfilePage extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: const Color(0xFF119DA4)),
-                    child: Center(
-                        child: FaIcon(FontAwesomeIcons.database,
+                    child: const Center(
+                        child:  FaIcon(FontAwesomeIcons.database,
                             color: Colors.black)),
                   ),
                   title: Text(
-                    "Data",
+                    'Data',
                     style: GoogleFonts.alegreya(
                       fontSize: 18,
-                      color: Color(0xFFF1F1F1),
+                      color: const Color(0xFFF1F1F1),
                     ),
                   ),
-                  subtitle: Text("Personal user data",
+                  subtitle: Text('Personal user data',
                       style: GoogleFonts.alegreya(
                           fontSize: 17, color: Colors.grey))),
               ListTile(
@@ -110,16 +112,16 @@ class ProfilePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                         color: const Color(0xFFFFC857)),
                     child:
-                        Center(child: FaIcon(Icons.face, color: Colors.black)),
+                        const Center(child: FaIcon(Icons.face, color: Colors.black)),
                   ),
                   title: Text(
-                    "Friends",
+                    'Friends',
                     style: GoogleFonts.alegreya(
                       fontSize: 18,
-                      color: Color(0xFFF1F1F1),
+                      color: const Color(0xFFF1F1F1),
                     ),
                   ),
-                  subtitle: Text("Friendly system users",
+                  subtitle: Text('Friendly system users',
                       style: GoogleFonts.alegreya(
                           fontSize: 17, color: Colors.grey))),
               ListTile(
@@ -129,18 +131,18 @@ class ProfilePage extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: const Color(0xFF98F5E1)),
-                    child: Center(
+                    child: const Center(
                         child: FaIcon(FontAwesomeIcons.facebookMessenger,
                             color: Colors.black)),
                   ),
                   title: Text(
-                    "Chats",
+                    'Chats',
                     style: GoogleFonts.alegreya(
                       fontSize: 18,
-                      color: Color(0xFFF1F1F1),
+                      color: const Color(0xFFF1F1F1),
                     ),
                   ),
-                  subtitle: Text("Friendly system users",
+                  subtitle: Text('Friendly system users',
                       style: GoogleFonts.alegreya(
                           fontSize: 17, color: Colors.grey))),
               ListTile(
@@ -150,19 +152,19 @@ class ProfilePage extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: const Color(0xFF89FC00)),
-                    child: Center(
+                    child: const Center(
                         child: FaIcon(FontAwesomeIcons.wrench,
                             color: Colors.black)),
                   ),
-                  onTap: () => Navigator.of(context).push(SlideUp(page: AccountSettingsPage())),
+                  onTap: () => Navigator.of(context).push(SlideUp(page: const AccountSettingsPage())),
                   title: Text(
-                    "Account Settings",
+                    'Account Settings',
                     style: GoogleFonts.alegreya(
                       fontSize: 18,
-                      color: Color(0xFFF1F1F1),
+                      color: const Color(0xFFF1F1F1),
                     ),
                   ),
-                  subtitle: Text("System updates and alerts",
+                  subtitle: Text('System updates and alerts',
                       style: GoogleFonts.alegreya(
                           fontSize: 17, color: Colors.grey))),
             ]),

@@ -17,6 +17,7 @@ class AppState extends Equatable {
   const AppState.unauthenticated() : this._(status: AppStatus.unauthenticated);
 
   @override
+  // ignore: always_specify_types
   List<Object> get props => [status, user];
 
 }

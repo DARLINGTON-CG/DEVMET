@@ -7,19 +7,21 @@ import '../../anim/route_anim/slide_up.dart';
 import '../../profile/pages/profile_page.dart';
 
 class CommunityPage extends StatelessWidget {
+  const CommunityPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-      slivers: [
+      slivers:<Widget> [
          SliverAppBar(
-          title: const Text("Community"),
+          title: const Text('Community'),
           elevation: 0.0,
           pinned: true,
           centerTitle: true,
           leading: Center(
             child: GestureDetector(
               onTap: () =>
-                  Navigator.of(context).push(SlideUp(page: ProfilePage())),
+                  Navigator.of(context).push(SlideUp(page: const ProfilePage())),
               child: Container(
                 width: 38,
                 height: 38,
@@ -29,7 +31,7 @@ class CommunityPage extends StatelessWidget {
               ),
             ),
           ),
-          actions: [
+          actions:<Widget> [
             IconButton(
                 onPressed: () =>
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -37,10 +39,10 @@ class CommunityPage extends StatelessWidget {
                       width: 240,
                       content: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: <Widget>[
                           const Icon(Icons.cancel_rounded, color: Colors.red),
                           const SizedBox(width: 13),
-                          Text("No internet connection",
+                          Text('No internet connection',
                               style: GoogleFonts.alegreya(
                                   color: Colors.white,
                                   fontSize: 16,
@@ -67,14 +69,14 @@ class CommunityPage extends StatelessWidget {
       margin: const EdgeInsets.only(top: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children:<Widget> [
           Padding(
             padding: const EdgeInsets.only(left: 12),
-            child: Text("Events",
+            child: Text('Events',
                 style: GoogleFonts.alegreya(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFFFFFFFF))),
+                    color: const Color(0xFFFFFFFF))),
           ),
           Container(
             height: 150,

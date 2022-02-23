@@ -7,6 +7,7 @@ class AuthState extends Equatable {
   const AuthState({this.status = FormzStatus.pure, this.errorMessage});
 
   @override
+  // ignore: always_specify_types
   List<Object?> get props => [status];
 
   AuthState copyWith({FormzStatus? status, String? errorMessage}) {

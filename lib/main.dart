@@ -25,7 +25,7 @@ Future<void> main() async {
   ));
 
   await Firebase.initializeApp();
-  final authRepository = AuthRepository();
+  final AuthRepository authRepository = AuthRepository();
   await authRepository.user.first;
 
   BlocOverrides.runZoned(
@@ -43,9 +43,10 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: always_specify_types
     return RepositoryProvider.value(
       value: _authRepository,
-      child: BlocProvider(
+      child: BlocProvider<AppBloc>(
           create: (_) => AppBloc(authenticationRepository: _authRepository),
           child: const AppView()),
     );
@@ -59,7 +60,7 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _status = context.select((AppBloc bloc) => bloc.state.status);
+    final AppStatus _status = context.select((AppBloc bloc) => bloc.state.status);
 
     return MaterialApp(
         title: 'Meet',
@@ -80,10 +81,10 @@ class AppView extends StatelessWidget {
               height: 60),
           splashColor: Colors.transparent,
         ),
-        // home: _status == AppStatus.authenticated
-        //     ? const HomePage()
-        //     : const AuthPage()
-        home: HomePage()
+        home: _status == AppStatus.authenticated
+            ? const HomePage()
+            : const AuthPage()
+       
             );
   }
 }

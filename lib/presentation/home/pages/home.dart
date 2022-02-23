@@ -1,27 +1,27 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../bloc/app_bloc/app_bloc.dart';
 import '../../anim/route_anim/slide_up.dart';
 import '../../profile/pages/profile_page.dart';
 
 class HomePageView extends StatelessWidget {
+  const HomePageView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-      slivers: [
+      slivers: <Widget> [
         SliverAppBar(
-          title: const Text("All Activities"),
+          title: const Text('All Activities'),
           elevation: 0.0,
           pinned: true,
           centerTitle: true,
           leading: Center(
             child: GestureDetector(
               onTap: () =>
-                  Navigator.of(context).push(SlideUp(page: ProfilePage())),
+                  Navigator.of(context).push(SlideUp(page: const ProfilePage())),
               child: Container(
                 width: 38,
                 height: 38,
@@ -31,7 +31,7 @@ class HomePageView extends StatelessWidget {
               ),
             ),
           ),
-          actions: [
+          actions:<Widget> [
             IconButton(
                 onPressed: () =>
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -39,10 +39,10 @@ class HomePageView extends StatelessWidget {
                       width: 240,
                       content: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children:<Widget> [
                           const Icon(Icons.cancel_rounded, color: Colors.red),
                           const SizedBox(width: 13),
-                          Text("No internet connection",
+                          Text('No internet connection',
                               style: GoogleFonts.alegreya(
                                   color: Colors.white,
                                   fontSize: 16,
@@ -70,7 +70,7 @@ class HomePageView extends StatelessWidget {
             padding: const EdgeInsets.all(5),
             child: ListView(
               scrollDirection: Axis.horizontal,
-              children: [
+              children:<Widget> [
                 Container(
                     height: 52,
                     padding: const EdgeInsets.all(10),
@@ -79,10 +79,10 @@ class HomePageView extends StatelessWidget {
                         color: const Color(0xFFFFB20F)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: <Widget> [
                         const Icon(Icons.all_inclusive_rounded),
                         const SizedBox(width: 10),
-                        Text("All Actvities",
+                        Text('All Actvities',
                             style: GoogleFonts.alegreya(
                                 color: Colors.black, fontSize: 16)),
                         const SizedBox(width: 5),
@@ -102,10 +102,10 @@ class HomePageView extends StatelessWidget {
                         color: const Color(0xFF8CFFDA)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children:<Widget> [
                         const Icon(Icons.event),
                         const SizedBox(width: 10),
-                        Text("Events",
+                        Text('Events',
                             style: GoogleFonts.alegreya(
                                 color: Colors.black, fontSize: 16)),
                         const SizedBox(width: 5),
@@ -125,10 +125,10 @@ class HomePageView extends StatelessWidget {
                         color: const Color(0xFFE4FDE1)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         const Icon(Icons.mic_rounded),
                         const SizedBox(width: 10),
-                        Text("Podcasts",
+                        Text('Podcasts',
                             style: GoogleFonts.alegreya(
                                 color: Colors.black, fontSize: 16)),
                         const SizedBox(width: 5),
@@ -148,14 +148,14 @@ class HomePageView extends StatelessWidget {
           margin: const EdgeInsets.only(top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children:<Widget> [
               Padding(
                 padding: const EdgeInsets.only(left: 12),
-                child: Text("Events",
+                child: Text('Events',
                     style: GoogleFonts.alegreya(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFFFFFFFF))),
+                        color: const Color(0xFFFFFFFF))),
               ),
               Container(
                 height: 150,
@@ -171,24 +171,24 @@ class HomePageView extends StatelessWidget {
         SliverToBoxAdapter(
             child: Padding(
           padding: const EdgeInsets.only(left: 12),
-          child: Text("Podcasts",
+          child: Text('Podcasts',
               style: GoogleFonts.alegreya(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFFFFFFFF))),
+                  color: const Color(0xFFFFFFFF))),
         )),
         SliverList(
             delegate: SliverChildBuilderDelegate(
           (BuildContext context, int index) {
             return Container(
               width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: Row(
-                children: [
+                children: <Widget> [
                   Container(
                     width: 120,
                     height: 150,
-                    margin: EdgeInsets.only(right: 20),
+                    margin: const EdgeInsets.only(right: 20),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.grey.withOpacity(0.2)),
@@ -197,23 +197,23 @@ class HomePageView extends StatelessWidget {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: <Widget> [
                         Text(
-                          "Arts and Humanities",
+                          'Arts and Humanities',
                           style: GoogleFonts.alegreya(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFFFFFFFF)),
+                              color: const Color(0xFFFFFFFF)),
                         ),
                         Text(
-                          "Inspiration of young minds to become creative.",
+                          'Inspiration of young minds to become creative.',
                           style: GoogleFonts.alegreya(
-                              fontSize: 16, color: Color(0xABFFFFFF)),
+                              fontSize: 16, color: const Color(0xABFFFFFF)),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
-                        Icon(Icons.add_circle)
+                        const Icon(Icons.add_circle)
                       ]))
                 ],
               ),

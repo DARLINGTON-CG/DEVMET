@@ -22,7 +22,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<AppLogoutRequested>(_onLogoutRequested);
     on<AppAccountDeletionRequested>(_onDeletionRequested);
     _userSubscription = _authenticationRepository.user.listen(
-      (user) => add(AppUserChanged(user)),
+      (UserModel user) => add(AppUserChanged(user)),
     );
   }
 

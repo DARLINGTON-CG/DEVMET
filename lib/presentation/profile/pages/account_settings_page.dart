@@ -1,14 +1,10 @@
-import 'package:badges/badges.dart';
-import 'package:devmet/presentation/anim/route_anim/slide_up.dart';
-import 'package:devmet/presentation/auth/pages/auth_page.dart';
-import 'package:devmet/presentation/core_widgets/custom_dialog.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../bloc/app_bloc/app_bloc.dart';
 import '../../../bloc/auth_bloc/auth_cubit.dart';
 import '../../../data_layer/repositories/auth_repository/auth_repository.dart';
 
@@ -19,10 +15,10 @@ class AccountSettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
-        slivers: [
+        slivers: <Widget> [
           SliverAppBar(
             backgroundColor: const Color(0xFF131112),
-            title: const Text("Account Settings"),
+            title: const Text('Account Settings'),
             centerTitle: true,
             leading: Center(
               child: GestureDetector(
@@ -45,9 +41,9 @@ class AccountSettingsPage extends StatelessWidget {
           ),
           BlocProvider<AuthCubit>(
         create: (_) => AuthCubit(context.read<AuthRepository>()),
-        child: Builder(builder: (context) {
+        child: Builder(builder: (BuildContext context) {
           return BlocListener<AuthCubit, AuthState>(
-            listener: (context, state) {
+            listener: (BuildContext context, AuthState state) {
               if (state.status.isSubmissionFailure) {
                 ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(state.errorMessage.toString())));
@@ -68,17 +64,17 @@ class AccountSettingsPage extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.red),
-                    child: Center(
-                        child: Icon(Icons.delete_forever, color: Colors.black)),
+                    child: const Center(
+                        child:  Icon(Icons.delete_forever, color: Colors.black)),
                   ),
                   title: Text(
-                    "Delete Account",
+                    'Delete Account',
                     style: GoogleFonts.alegreya(
                       fontSize: 18,
-                      color: Color(0xFFF1F1F1),
+                      color: const Color(0xFFF1F1F1),
                     ),
                   ),
-                  subtitle: Text("All user data will be erased",
+                  subtitle: Text('All user data will be erased',
                       style: GoogleFonts.alegreya(
                           fontSize: 17, color: Colors.grey)));
             }, childCount: 1),

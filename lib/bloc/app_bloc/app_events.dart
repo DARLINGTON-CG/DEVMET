@@ -4,6 +4,7 @@ abstract class AppEvent extends Equatable {
   const AppEvent();
 
   @override
+  // ignore: always_specify_types
   List<Object> get props => [];
 }
 
@@ -19,5 +20,6 @@ class AppUserChanged extends AppEvent
   final UserModel user;
 
   @override
+  // ignore: always_specify_types
   List<Object> get props => [user];
 }

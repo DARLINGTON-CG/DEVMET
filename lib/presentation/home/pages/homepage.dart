@@ -1,17 +1,10 @@
 import 'package:devmet/presentation/home/pages/home.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:badges/badges.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../bloc/app_bloc/app_bloc.dart';
-import '../../anim/route_anim/slide_up.dart';
 import '../../chat/pages/chat_page.dart';
 import '../../communities/pages/communities_page.dart';
 import '../../payments/pages/payments_page.dart';
 import '../widgets/navigation_bar_item.dart';
-import '../../profile/pages/profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -26,11 +19,11 @@ class _HomePageState extends State<HomePage> {
   int index = 0;
   int pageIndex = 0;
 
-  List<Widget> _widgetOptions = [
-    HomePageView(),
-    ChatPage(),
-    CommunityPage(),
-    PaymentPage(),
+  final List<Widget> _widgetOptions = <Widget> [
+    const HomePageView(),
+    const ChatPage(),
+    const CommunityPage(),
+    const PaymentPage(),
   ];
 
   @override
@@ -51,13 +44,13 @@ class _HomePageState extends State<HomePage> {
             
             });
           },
-          destinations: [
+          destinations: <Widget> [
             NavBarItem(
-                label: "Home",
+                label: 'Home',
                 iconName: Icons.grid_view,
                 isSelected: index == 0),
             NavBarItem(
-                label: "Chat",
+                label: 'Chat',
                 iconName: Icons.chat_bubble_rounded,
                 isSelected: index == 1),
             FloatingActionButton.small(
@@ -68,11 +61,11 @@ class _HomePageState extends State<HomePage> {
                 ),
                 backgroundColor: const Color(0xFF3212F1)),
             NavBarItem(
-                label: "Communities",
+                label: 'Communities',
                 iconName: Icons.auto_graph_rounded,
                 isSelected: index == 3),
             NavBarItem(
-                label: "Payments",
+                label: 'Payments',
                 iconName: Icons.account_balance_wallet_rounded,
                 isSelected: index == 4),
           ],

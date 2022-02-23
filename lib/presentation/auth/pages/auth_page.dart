@@ -9,17 +9,16 @@ import '../widgets/login_button.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({Key? key}) : super(key: key);
-  static Page page() => const MaterialPage<void>(child: AuthPage());
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: BlocProvider<AuthCubit>(
         create: (_) => AuthCubit(context.read<AuthRepository>()),
-        child: Builder(builder: (context) {
+        child: Builder(builder: (BuildContext context) {
           return BlocListener<AuthCubit, AuthState>(
-            listener: (context, state) {
+            listener: (BuildContext context, AuthState state) {
               if (state.status.isSubmissionFailure) {
                 ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(state.errorMessage.toString())));
@@ -29,11 +28,11 @@ class AuthPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: <Widget> [
                   Padding(
                     padding: const EdgeInsets.only(
                         left: 25, right: 25, top: 40, bottom: 30),
-                    child: Text("Learn to Code,\nWith other people.",
+                    child: Text('Learn to Code,\nWith other people.',
                         textAlign: TextAlign.start,
                         style: GoogleFonts.alegreya(
                           color: const Color(0xFFF1F1F1),
@@ -46,11 +45,11 @@ class AuthPage extends StatelessWidget {
                       decoration: const BoxDecoration(
                           image: DecorationImage(
                         image:
-                            AssetImage("assets/images/login_illustration.png"),
+                            AssetImage('assets/images/login_illustration.png'),
                       )),
                     ),
                   ),
-                  Builder(builder: (context) {
+                  Builder(builder: (BuildContext context) {
                     return Align(
                       alignment: Alignment.bottomRight,
                       child: LoginButton(func: () {

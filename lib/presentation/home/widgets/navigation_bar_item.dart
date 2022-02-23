@@ -15,7 +15,7 @@ class NavBarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: [
+      children:<Widget> [
         Center(
           child: AnimatedOpacity(
             opacity: isSelected ? 1 : 0,
@@ -35,7 +35,7 @@ class NavBarItem extends StatelessWidget {
             iconName,
             color: const Color(0xFFF1F1F1),
           ),
-          label: "",
+          label: '',
           selectedIcon: Icon(
             iconName,
             color: const Color(0xFF131112),

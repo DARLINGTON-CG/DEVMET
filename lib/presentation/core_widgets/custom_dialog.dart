@@ -7,8 +7,8 @@ void showCustomDialogBox( BuildContext context,String header,String message) {
       barrierDismissible: true,
       barrierLabel: '',
       barrierColor: Colors.grey.withOpacity(0.1),
-      transitionBuilder: (context, anim1, anim2, child) {
-        final curvedValue = Curves.easeInOutBack.transform(anim1.value) - 1.0;
+      transitionBuilder: (BuildContext context, Animation<double> anim1, Animation<double> anim2, Widget child) {
+        final double curvedValue = Curves.easeInOutBack.transform(anim1.value) - 1.0;
         return Transform(
           transform: Matrix4.translationValues(0.0, curvedValue * 200, 0.0),
           child: Opacity(
@@ -21,13 +21,13 @@ void showCustomDialogBox( BuildContext context,String header,String message) {
               content: Container(
                   height: 180,
                   width: MediaQuery.of(context).size.width * 0.5,
-                  padding: EdgeInsets.all(10),
+                  padding:const EdgeInsets.all(10),
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(20)),
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+                      children: <Widget> [
                         Text(header,
                             style: GoogleFonts.alegreya(
                                 fontSize: 20,
@@ -46,6 +46,6 @@ void showCustomDialogBox( BuildContext context,String header,String message) {
           ),
         );
       },
-      transitionDuration: Duration(milliseconds: 900),
-      pageBuilder: (BuildContext context, anim1, anim2) => Container());
+      transitionDuration:const Duration(milliseconds: 900),
+      pageBuilder: (BuildContext context, Animation<double> anim1, Animation<double> anim2) => Container());
 }

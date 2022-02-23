@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: always_specify_types
 class SlideUp extends PageRouteBuilder {
   final Widget page;
   SlideUp({required this.page})
@@ -19,9 +20,9 @@ class SlideUp extends PageRouteBuilder {
                 Widget child) {
               Offset first = const Offset(0, 1.0);
               Offset second = Offset.zero;
-              var tween = Tween(begin: first, end: second)
+              Animatable<Offset> tween = Tween<Offset>(begin: first, end: second)
                   .chain(CurveTween(curve: Curves.easeInOut));
-              var offset = firstAnim.drive(tween);
+              Animation<Offset> offset = firstAnim.drive(tween);
               return SlideTransition(
                 position: offset,
                 child: child,

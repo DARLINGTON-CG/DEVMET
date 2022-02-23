@@ -22,11 +22,11 @@ class AuthRepository {
   final CacheClient _cache;
 
   @visibleForTesting
-  static const userCacheKey = '__user_cache_key__';
+  static const String userCacheKey = '__user_cache_key__';
 
   Stream<UserModel> get user {
-    return _firebaseAuth.authStateChanges().map((firebaseUser) {
-      final user = firebaseUser == null ? UserModel.empty : firebaseUser.toUser;
+    return _firebaseAuth.authStateChanges().map((User? firebaseUser) {
+      final UserModel user = firebaseUser == null ? UserModel.empty : firebaseUser.toUser;
       _cache.write(key: userCacheKey, value: user);
       return user;
     });
@@ -38,8 +38,8 @@ class AuthRepository {
   Future<void> logInWithGoogle() async {
     try {
       late final firebase_auth.AuthCredential credential;
-      final googleUser = await _googleSignIn.signIn();
-      final googleAuth = await googleUser!.authentication;
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
       credential = firebase_auth.GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
@@ -55,6 +55,7 @@ class AuthRepository {
 
   Future<void> logOut() async {
     try {
+      // ignore: always_specify_types
       await Future.wait([
         _firebaseAuth.signOut(),
         _googleSignIn.signOut(),
@@ -67,8 +68,8 @@ class AuthRepository {
   Future<void> deleteUserAccount() async {
     try {
       late final AuthCredential credential;
-      final googleUser = await GoogleSignIn.standard().signIn();
-      final googleAuth = await googleUser!.authentication;
+      final GoogleSignInAccount? googleUser = await GoogleSignIn.standard().signIn();
+      final GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
       credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,

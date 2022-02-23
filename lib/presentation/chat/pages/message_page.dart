@@ -11,7 +11,7 @@ class MessagingPage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0.0,
         title: Row(
-          children: [
+          children: <Widget>[
             Container(
               width: 40,
               height: 40,
@@ -24,7 +24,7 @@ class MessagingPage extends StatelessWidget {
             const Text('Raised By Wolves'),
           ],
         ),
-        actions: [
+        actions:<Widget> [
           IconButton(
             onPressed: () {},
             icon: const FaIcon(
@@ -52,7 +52,7 @@ class MessagingPage extends StatelessWidget {
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
+                    children:<Widget> [
                       const Icon(
                         Icons.sentiment_satisfied_alt_outlined,
                         color: Colors.grey,

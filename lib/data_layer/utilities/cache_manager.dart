@@ -7,7 +7,7 @@ class CacheClient {
   }
 
   T? read<T extends Object>({required String key}) {
-    final value = _cache[key];
+    final Object? value = _cache[key];
     if (value is T) return value;
     return null;
   }

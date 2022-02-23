@@ -16,10 +16,10 @@ class LoginButton extends StatelessWidget {
           width: 90,
           height: 90,
           alignment: Alignment.center,
-          decoration: BoxDecoration(
-              color:const Color(0xffe3f6fd), shape: BoxShape.circle),
+          decoration:const BoxDecoration(
+              color: Color(0xffe3f6fd), shape: BoxShape.circle),
           child: Text(
-            "Start",
+            'Start',
             style: GoogleFonts.alegreya(fontSize: 20, color: Colors.black),
           )),
     );

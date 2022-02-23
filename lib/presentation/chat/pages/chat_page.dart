@@ -12,7 +12,7 @@ class ChatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(slivers: [
+    return CustomScrollView(slivers:<Widget> [
       SliverAppBar(
         title:const Text('Chats'),
         elevation: 0.0,
@@ -21,7 +21,7 @@ class ChatPage extends StatelessWidget {
         leading: Center(
           child: GestureDetector(
             onTap: () =>
-                Navigator.of(context).push(SlideUp(page: ProfilePage())),
+                Navigator.of(context).push(SlideUp(page: const ProfilePage())),
             child: Container(
               width: 38,
               height: 38,
@@ -30,7 +30,7 @@ class ChatPage extends StatelessWidget {
             ),
           ),
         ),
-        actions: [
+        actions:<Widget> [
           IconButton(
             onPressed: () {},
             icon: const FaIcon(
@@ -62,11 +62,11 @@ class ChatPage extends StatelessWidget {
               style: GoogleFonts.alegreya(color: const Color(0xFFF1F1F1),fontSize: 15),
             ),
             onTap: () {
-              Navigator.of(context).push(SlideIn(page: MessagingPage()));
+              Navigator.of(context).push(SlideIn(page: const MessagingPage()));
             },
             trailing: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: <Widget> [
                 Text('16:51', style: GoogleFonts.alegreya(color: Colors.white,fontSize:15)),
                 Container(
                   width: 21,
