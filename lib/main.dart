@@ -80,8 +80,10 @@ class AppView extends StatelessWidget {
               height: 60),
           splashColor: Colors.transparent,
         ),
-        home: _status == AppStatus.authenticated
-            ? const HomePage()
-            : const AuthPage());
+        // home: _status == AppStatus.authenticated
+        //     ? const HomePage()
+        //     : const AuthPage()
+        home: HomePage()
+            );
   }
 }
