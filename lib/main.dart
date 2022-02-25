@@ -43,8 +43,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: always_specify_types
-    return RepositoryProvider.value(
+    return RepositoryProvider<AuthRepository>.value(
       value: _authRepository,
       child: BlocProvider<AppBloc>(
           create: (_) => AppBloc(authenticationRepository: _authRepository),
@@ -80,6 +79,11 @@ class AppView extends StatelessWidget {
               labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
               height: 60),
           splashColor: Colors.transparent,
+          textTheme: TextTheme(
+             
+
+          ),
+
         ),
         home: _status == AppStatus.authenticated
             ? const HomePage()
