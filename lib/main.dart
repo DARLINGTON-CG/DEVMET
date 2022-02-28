@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:devmet/data_layer/models/user_model.dart';
+import 'package:devmet/data_layer/repositories/user_repository/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'bloc/app_bloc/app_bloc.dart';
 import 'bloc/app_bloc/app_bloc_observer.dart';
@@ -26,28 +30,44 @@ Future<void> main() async {
 
   await Firebase.initializeApp();
   final AuthRepository authRepository = AuthRepository();
-  await authRepository.user.first;
+  final UserModel user = await authRepository.user.first;
+  final UserRepository userRepository =
+      UserRepository(firestore: FirebaseFirestore.instance, user: user);
+
+  await Hive.initFlutter();
+  await Hive.openBox('personalData');
 
   BlocOverrides.runZoned(
-    () => runApp(App(authRepository: authRepository)),
+    () => runApp(App(
+      authRepository: authRepository,
+      userRepository: userRepository,
+    )),
     blocObserver: AppBlocObserver(),
   );
 }
 
 class App extends StatelessWidget {
   final AuthRepository _authRepository;
+  final UserRepository _userRepository;
 
-  const App({Key? key, required AuthRepository authRepository})
+  const App(
+      {Key? key,
+      required AuthRepository authRepository,
+      required UserRepository userRepository})
       : _authRepository = authRepository,
+        _userRepository = userRepository,
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider<AuthRepository>.value(
       value: _authRepository,
-      child: BlocProvider<AppBloc>(
-          create: (_) => AppBloc(authenticationRepository: _authRepository),
-          child: const AppView()),
+      child: RepositoryProvider<UserRepository>.value(
+        value: _userRepository,
+        child: BlocProvider<AppBloc>(
+            create: (_) => AppBloc(authenticationRepository: _authRepository),
+            child: const AppView()),
+      ),
     );
   }
 }
@@ -59,8 +79,14 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppStatus _status = context.select((AppBloc bloc) => bloc.state.status);
-
+    // final AppStatus _status =
+    //     context.select((AppBloc bloc) => bloc.state.status);
+    final bool? dataBox = Hive.box('personalData').get('approved') ?? false;
+    final Widget initialPage = AuthPage();
+        // dataBox == false 
+        //     ? const AuthPage()
+        //     : const HomePage();
+   
     return MaterialApp(
         title: 'Meet',
         debugShowCheckedModeBanner: false,
@@ -80,15 +106,10 @@ class AppView extends StatelessWidget {
               height: 60),
           splashColor: Colors.transparent,
           textTheme: TextTheme(
-             
-
+            bodyText1: GoogleFonts.lato(fontSize: 19),
+            bodyText2: GoogleFonts.lato(fontSize: 18),
           ),
-
         ),
-        home: _status == AppStatus.authenticated
-            ? const HomePage()
-            : const AuthPage()
-       
-            );
+        home: initialPage);
   }
 }

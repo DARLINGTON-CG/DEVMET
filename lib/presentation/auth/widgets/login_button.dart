@@ -1,27 +1,71 @@
+import 'package:devmet/presentation/anim/widget_anim/pulse_anim.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class LoginButton extends StatelessWidget {
+class LoginButton extends StatefulWidget {
   final VoidCallback? func;
 
   const LoginButton({Key? key, required this.func}) : super(key: key);
 
   @override
+  State<LoginButton> createState() => _LoginButtonState();
+}
+
+class _LoginButtonState extends State<LoginButton>
+    with SingleTickerProviderStateMixin {
+  late Animation<double> animation;
+  late AnimationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(vsync: this, duration: const Duration(seconds: 3))
+          ..repeat(reverse: true);
+    //animation = Tween<double>(begin: 0.0, end: 1).animate(controller);
+    controller.forward();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: func,
-      child: Container(
-          padding:const EdgeInsets.all(20),
-          margin: const EdgeInsets.all(15),
-          width: 90,
-          height: 90,
-          alignment: Alignment.center,
-          decoration:const BoxDecoration(
-              color: Color(0xffe3f6fd), shape: BoxShape.circle),
-          child: Text(
-            'Start',
-            style: GoogleFonts.alegreya(fontSize: 20, color: Colors.black),
-          )),
+    return Stack(
+      alignment: Alignment.center,
+      children: <Widget>[
+        ScaleTransition(
+          scale: controller,
+
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            margin: const EdgeInsets.all(15),
+            width: 100,
+            height: 100,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                color: Colors.blueGrey.withOpacity(0.5),
+                shape: BoxShape.circle),
+          ),
+        ),
+       
+        GestureDetector(
+          onTap: widget.func,
+          child: Container(
+              padding: const EdgeInsets.all(20),
+              margin: const EdgeInsets.all(15),
+              width: 80,
+              height: 80,
+              alignment: Alignment.center,
+              decoration: const BoxDecoration(
+                  color: Color(0xffe3f6fd), shape: BoxShape.circle),
+              child:
+                  const FaIcon(FontAwesomeIcons.google, color: Colors.black)),
+        ),
+      ],
     );
   }
 }

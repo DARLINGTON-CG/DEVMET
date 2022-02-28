@@ -27,7 +27,8 @@ class AuthRepository {
   Stream<UserModel> get user {
     return _firebaseAuth.authStateChanges().map((User? firebaseUser) {
       final UserModel user = firebaseUser == null ? UserModel.empty : firebaseUser.toUser;
-      _cache.write(key: userCacheKey, value: user);
+
+      // _cache.write(key: userCacheKey, value: user);
       return user;
     });
   }
@@ -87,6 +88,6 @@ class AuthRepository {
 
 extension on firebase_auth.User {
   UserModel get toUser {
-    return UserModel(id: uid, email: email, name: displayName, photo: photoURL);
+    return UserModel(id: uid, email: email);
   }
 }

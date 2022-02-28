@@ -37,6 +37,7 @@ class HomePageView extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       padding: const EdgeInsets.all(10),
                       width: 240,
+                     
                       content: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children:<Widget> [

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../core_widgets/user_avatar.dart';
+
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
@@ -55,27 +57,16 @@ class ProfilePage extends StatelessWidget {
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: 200,
-              margin: const EdgeInsets.only(bottom: 20),
               child: Center(
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget> [
-                  Container(
-                    width: 120,
-                    height: 120,
-                    margin: const EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(40),
-                    ),
-                  ),
-                  Text(
-                    'Donat Twerski',
-                    style: GoogleFonts.alegreya(
-                      color: Colors.white,
-                      fontSize: 19,
-                    ),
-                  ),
+                 const UserAvatar(),
+                      Text('Master Zero',
+                          style: GoogleFonts.lato(
+                              fontSize: 19,
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xFFFFFFFF))),
                 ],
               )),
             ),

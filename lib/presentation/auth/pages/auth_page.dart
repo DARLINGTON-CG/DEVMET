@@ -1,4 +1,6 @@
 import 'package:devmet/bloc/auth_bloc/auth_cubit.dart';
+import 'package:devmet/bloc/user_data_bloc/user_cubit.dart';
+import 'package:devmet/presentation/anim/route_anim/slide_in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -6,10 +8,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../data_layer/repositories/auth_repository/auth_repository.dart';
 import '../widgets/login_button.dart';
+import 'user_data_page.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,48 +20,79 @@ class AuthPage extends StatelessWidget {
       body: BlocProvider<AuthCubit>(
         create: (_) => AuthCubit(context.read<AuthRepository>()),
         child: Builder(builder: (BuildContext context) {
-          return BlocListener<AuthCubit, AuthState>(
-            listener: (BuildContext context, AuthState state) {
-              if (state.status.isSubmissionFailure) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(state.errorMessage.toString())));
-              }
-            },
-            child: SafeArea(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget> [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 25, right: 25, top: 40, bottom: 30),
-                    child: Text('Learn to Code,\nWith other people.',
-                        textAlign: TextAlign.start,
-                        style: GoogleFonts.alegreya(
-                          color: const Color(0xFFF1F1F1),
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  ),
-                  Expanded(
-                    child: Container(
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                        image:
-                            AssetImage('assets/images/login_illustration.png'),
+          return SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 25, right: 25, top: 40, bottom: 30),
+                  child: Text('Learn to Code,\nWith other people.',
+                      textAlign: TextAlign.start,
+                      style: GoogleFonts.alegreya(
+                        color: const Color(0xFFF1F1F1),
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
                       )),
-                    ),
+                ),
+                Expanded(
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                      image: AssetImage('assets/images/login_illustration.png'),
+                    )),
                   ),
-                  Builder(builder: (BuildContext context) {
-                    return Align(
-                      alignment: Alignment.bottomRight,
-                      child: LoginButton(func: () {
-                        context.read<AuthCubit>().logInWithGoogle();
-                      }),
-                    );
-                  })
-                ],
-              ),
+                ),
+                BlocListener<AuthCubit, AuthState>(
+                  listener: (BuildContext context, AuthState state) {
+                    if (state.status.isSubmissionFailure) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        padding: const EdgeInsets.all(10),
+                        width: state.errorMessage.toString().length > 21
+                            ? 280
+                            : 240,
+                        content: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            const Icon(Icons.cancel_rounded, color: Colors.red),
+                            const SizedBox(width: 13),
+                            Text(state.errorMessage.toString(),
+                                style: GoogleFonts.alegreya(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold))
+                          ],
+                        ),
+                        backgroundColor: Colors.black,
+                        behavior: SnackBarBehavior.floating,
+                      ));
+                    } else if (state.status.isSubmissionSuccess) {
+                      //CHECK IF THE DATA IS PRESENT IS IN FIREBASE IF THE DATA IS PRESENT IN FIREBASE, THE DATA IS CACHED AND
+                      //WE MOVE TO THE HOMEPAGE.
+                      //IF THE DATA IS NOT PRESENT WE MOVE TO THE USER DATA PAGE
+                      //USER IS ALLOWED TO FILL THE NAME AND UPLOAD A PICTURED
+                      // A WELCOME MESSAGE IS DISPLAYED
+                      //APPROVED IS GIVEN THE VALUE
+                      //TRUE
+                      //NAVIGATE TO THE HOMEPAGE
+                      // BlocProvider.of<UserDataCubit>(context)
+                      //     .getDataFromFirebase()
+                      //     .whenComplete(() => print("IT IS FINISHED"));
+                      // context.
+                      //    context.select((UserDataCubit bloc) => bloc..whenComplete(() => print('complete')));
+                      Navigator.of(context)
+                          .push(SlideIn(page: const UserDataPage()));
+                    }
+                  },
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: LoginButton(func: () {
+                      context.read<AuthCubit>().logInWithGoogle();
+                    }),
+                  ),
+                )
+              ],
             ),
           );
         }),

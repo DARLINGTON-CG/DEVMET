@@ -9,35 +9,35 @@ class LoginWithGoogleError implements Exception {
     switch (errorCode) {
       case 'account-exists-with-different-credential':
         return const LoginWithGoogleError(
-          'Account exists with different credentials.',
+          'Exists with different credential.',
         );
       case 'invalid-credential':
         return const LoginWithGoogleError(
-          'The credential received is malformed or has expired.',
+          'Invalid credential.',
         );
       case 'operation-not-allowed':
         return const LoginWithGoogleError(
-          'Operation is not allowed.  Please contact support.',
+          'Operation is not allowed.',
         );
       case 'user-disabled':
         return const LoginWithGoogleError(
-          'This user has been disabled. Please contact support for help.',
+         'Account Disabled.',
         );
       case 'user-not-found':
         return const LoginWithGoogleError(
-          'Email is not found, please create an account.',
+          'Email is not found.',
         );
       case 'wrong-password':
         return const LoginWithGoogleError(
-          'Incorrect password, please try again.',
+          'Incorrect password.',
         );
       case 'invalid-verification-code':
         return const LoginWithGoogleError(
-          'The credential verification code received is invalid.',
+          'Invalid verification code',
         );
       case 'invalid-verification-id':
         return const LoginWithGoogleError(
-          'The credential verification ID received is invalid.',
+          'Credential Id invalid',
         );
       default:
         return const LoginWithGoogleError();

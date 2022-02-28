@@ -1,12 +1,10 @@
 import 'package:equatable/equatable.dart';
 
 class UserModel extends Equatable {
-  final String? name;
   final String? email;
-  final String? photo;
   final String? id;
 
-  const UserModel({this.name, this.email, this.photo, required this.id});
+  const UserModel({ this.email, required this.id});
 
   static const UserModel empty = UserModel(id: '');
 
@@ -15,5 +13,5 @@ class UserModel extends Equatable {
 
   @override
   // ignore: always_specify_types
-  List<Object?> get props => [email, name, photo, id];
+  List<Object?> get props => [email, id];
 }
