@@ -25,8 +25,8 @@ class UserDataCubit extends Cubit<UserDataState> {
   Future<void> getDataFromFirebase() async {
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
-      await userRepository.getUserPersonalData();
-      emit(state.copyWith(status: FormzStatus.submissionSuccess));
+      UserModel model = await userRepository.getUserPersonalData();
+      emit(state.copyWith(status: FormzStatus.submissionSuccess, model: model));
     } catch (_) {
       emit(state.copyWith(status: FormzStatus.submissionFailure));
     }

@@ -1,11 +1,13 @@
-import 'package:devmet/presentation/anim/widget_anim/pulse_anim.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginButton extends StatefulWidget {
   final VoidCallback? func;
+  final bool isSubmissionProgressing;
 
-  const LoginButton({Key? key, required this.func}) : super(key: key);
+  const LoginButton(
+      {Key? key, required this.func, required this.isSubmissionProgressing})
+      : super(key: key);
 
   @override
   State<LoginButton> createState() => _LoginButtonState();
@@ -22,7 +24,6 @@ class _LoginButtonState extends State<LoginButton>
     controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 3))
           ..repeat(reverse: true);
-    //animation = Tween<double>(begin: 0.0, end: 1).animate(controller);
     controller.forward();
   }
 
@@ -39,7 +40,6 @@ class _LoginButtonState extends State<LoginButton>
       children: <Widget>[
         ScaleTransition(
           scale: controller,
-
           child: Container(
             padding: const EdgeInsets.all(20),
             margin: const EdgeInsets.all(15),
@@ -51,7 +51,6 @@ class _LoginButtonState extends State<LoginButton>
                 shape: BoxShape.circle),
           ),
         ),
-       
         GestureDetector(
           onTap: widget.func,
           child: Container(
@@ -62,8 +61,13 @@ class _LoginButtonState extends State<LoginButton>
               alignment: Alignment.center,
               decoration: const BoxDecoration(
                   color: Color(0xffe3f6fd), shape: BoxShape.circle),
-              child:
-                  const FaIcon(FontAwesomeIcons.google, color: Colors.black)),
+              child: widget.isSubmissionProgressing
+                  ? const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child:
+                          CircularProgressIndicator(color: Color(0xFF131112)))
+                  : const FaIcon(FontAwesomeIcons.google, color: Colors.black)),
         ),
       ],
     );

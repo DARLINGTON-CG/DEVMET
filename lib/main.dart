@@ -41,6 +41,7 @@ Future<void> main() async {
     () => runApp(App(
       authRepository: authRepository,
       userRepository: userRepository,
+      user: user,
     )),
     blocObserver: AppBlocObserver(),
   );
@@ -49,11 +50,12 @@ Future<void> main() async {
 class App extends StatelessWidget {
   final AuthRepository _authRepository;
   final UserRepository _userRepository;
-
+  final UserModel user;
   const App(
       {Key? key,
       required AuthRepository authRepository,
-      required UserRepository userRepository})
+      required UserRepository userRepository,
+      required this.user})
       : _authRepository = authRepository,
         _userRepository = userRepository,
         super(key: key);
@@ -66,15 +68,17 @@ class App extends StatelessWidget {
         value: _userRepository,
         child: BlocProvider<AppBloc>(
             create: (_) => AppBloc(authenticationRepository: _authRepository),
-            child: const AppView()),
+            child:  AppView(userModel: user)),
       ),
     );
   }
 }
 
 class AppView extends StatelessWidget {
+  final UserModel userModel;
   const AppView({
     Key? key,
+    required this.userModel
   }) : super(key: key);
 
   @override
@@ -82,11 +86,11 @@ class AppView extends StatelessWidget {
     // final AppStatus _status =
     //     context.select((AppBloc bloc) => bloc.state.status);
     final bool? dataBox = Hive.box('personalData').get('approved') ?? false;
-    final Widget initialPage = AuthPage();
-        // dataBox == false 
-        //     ? const AuthPage()
-        //     : const HomePage();
-   
+    final Widget initialPage = AuthPage(userModel: userModel,);
+    // dataBox == false
+    //     ? const AuthPage()
+    //     : const HomePage();
+
     return MaterialApp(
         title: 'Meet',
         debugShowCheckedModeBanner: false,

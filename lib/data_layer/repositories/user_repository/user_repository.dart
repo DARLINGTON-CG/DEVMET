@@ -5,14 +5,16 @@ import 'package:flutter/foundation.dart';
 part 'user_repo_failures.dart';
 
 class UserRepository {
-  final FirebaseFirestore firestore;
-  final UserModel user;
-  UserRepository({required this.firestore, required this.user});
+  final FirebaseFirestore _firestore;
+  final UserModel _user;
+  UserRepository({FirebaseFirestore? firestore, UserModel? user})
+      : _firestore = firestore ?? FirebaseFirestore.instance,
+        _user = user ?? UserModel.empty;
 
   Future<void> addUserPersonalData() async {
     try {
-      await firestore.collection('users').doc(user.id).set(<String, dynamic>{
-        'personalData': <String, dynamic>{'email': user.email, 'id': user.id}
+      await _firestore.collection('users').doc(_user.id).set(<String, dynamic>{
+        'personalData': <String, dynamic>{'email': _user.email, 'id': _user.id}
       });
     } on FirebaseException catch (e) {
       throw UserRepoFailures.fromCode(e.toString());
@@ -31,13 +33,12 @@ class UserRepository {
 
   // }
 
-  Future<void> getUserPersonalData() async {
+  Future<UserModel> getUserPersonalData() async {
     try {
       DocumentSnapshot<Map<String, dynamic>> jsonData =
-          await firestore.collection('users').doc(user.id).get();
-      if (kDebugMode) {
-        print(jsonData.data().toString());
-      }
+          await _firestore.collection('users').doc(_user.id).get();
+      if (jsonData.data() == null) return UserModel.empty;
+      return UserModel(id: jsonData['id'], email: jsonData['email']);
     } catch (_) {
       throw const UserRepoFailures();
     }
