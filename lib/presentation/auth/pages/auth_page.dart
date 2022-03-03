@@ -85,14 +85,6 @@ class AuthPage extends StatelessWidget {
                           behavior: SnackBarBehavior.floating,
                         ));
                       } else if (state.status.isSubmissionSuccess) {
-                        //CHECK IF THE DATA IS PRESENT IS IN FIREBASE IF THE DATA IS PRESENT IN FIREBASE, THE DATA IS CACHED AND
-                        //WE MOVE TO THE HOMEPAGE.
-                        //IF THE DATA IS NOT PRESENT WE MOVE TO THE USER DATA PAGE
-                        //USER IS ALLOWED TO FILL THE NAME AND UPLOAD A PICTURED
-                        // A WELCOME MESSAGE IS DISPLAYED
-                        //APPROVED IS GIVEN THE VALUE
-                        //TRUE
-                        //NAVIGATE TO THE HOMEPAGE
                         BlocProvider.of<UserDataCubit>(context)
                             .getDataFromFirebase()
                             .whenComplete(() {
@@ -103,7 +95,7 @@ class AuthPage extends StatelessWidget {
                                   .isEmpty;
                           if (emptyState) {
                             Navigator.of(context)
-                                .push(SlideIn(page: const UserDataPage()));
+                                .pushReplacement(SlideIn(page: const UserDataPage()));
                           } else {
                             Navigator.of(context).pushReplacement(
                                 SlideIn(page: const HomePage()));
@@ -119,7 +111,11 @@ class AuthPage extends StatelessWidget {
                               context.read<AuthCubit>().logInWithGoogle();
                             },
                             isSubmissionProgressing:
-                                state.status.isSubmissionInProgress),
+                                state.status.isSubmissionInProgress ||
+                                    BlocProvider.of<UserDataCubit>(context)
+                                        .state
+                                        .status
+                                        .isSubmissionInProgress),
                       );
                     },
                   )

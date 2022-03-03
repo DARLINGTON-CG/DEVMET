@@ -43,5 +43,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app wants to select profile and event pictures for upload</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app wants to take profile and event pictures for upload</string>
 </dict>
 </plist>
