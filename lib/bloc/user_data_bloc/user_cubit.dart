@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:devmet/data_layer/models/user_model.dart';
 import 'package:devmet/data_layer/repositories/user_repository/user_repository.dart';
 import 'package:equatable/equatable.dart';
@@ -30,5 +32,9 @@ class UserDataCubit extends Cubit<UserDataState> {
     } catch (_) {
       emit(state.copyWith(status: FormzStatus.submissionFailure));
     }
+  }
+
+   void emitUserFile(File? file) {
+    emit(state.copyWith(imageFile: file));
   }
 }

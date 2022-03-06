@@ -1,6 +1,7 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:devmet/data_layer/models/user_model.dart';
-import 'package:flutter/foundation.dart';
+
 
 part 'user_repo_failures.dart';
 
@@ -43,4 +44,5 @@ class UserRepository {
       throw const UserRepoFailures();
     }
   }
+
 }

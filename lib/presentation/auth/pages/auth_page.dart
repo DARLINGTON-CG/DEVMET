@@ -21,108 +21,211 @@ class AuthPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        body: MultiBlocProvider(
-          // ignore: always_specify_types
-          providers: [
-            BlocProvider<AuthCubit>(
-              create: (BuildContext context) =>
-                  AuthCubit(context.read<AuthRepository>()),
-            ),
-            BlocProvider<UserDataCubit>(
-              create: (BuildContext context) => UserDataCubit(
-                  userRepository: context.read<UserRepository>(),
-                  model: userModel),
-            ),
-          ],
-          child: Builder(builder: (BuildContext context) {
-            return SafeArea(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 25, right: 25, top: 40, bottom: 30),
-                    child: Text('Learn to Code,\nWith other people.',
-                        textAlign: TextAlign.start,
-                        style: GoogleFonts.alegreya(
-                          color: const Color(0xFFF1F1F1),
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  ),
-                  Expanded(
-                    child: Container(
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                        image:
-                            AssetImage('assets/images/login_illustration.png'),
-                      )),
+        body: BlocProvider<AuthCubit>(
+          create: (BuildContext context) =>
+              AuthCubit(context.read<AuthRepository>()),
+          child: BlocProvider<UserDataCubit>.value(
+            value: UserDataCubit(
+                userRepository: context.read<UserRepository>(),
+                model: userModel),
+            child: Builder(builder: (BuildContext context) {
+              return SafeArea(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 25, right: 25, top: 40, bottom: 30),
+                      child: Text('Learn to Code,\nWith other people.',
+                          textAlign: TextAlign.start,
+                          style: GoogleFonts.alegreya(
+                            color: const Color(0xFFF1F1F1),
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          )),
                     ),
-                  ),
-                  BlocConsumer<AuthCubit, AuthState>(
-                    listener: (BuildContext context, AuthState state) {
-                      if (state.status.isSubmissionFailure) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          padding: const EdgeInsets.all(10),
-                          width: state.errorMessage.toString().length > 21
-                              ? 280
-                              : 240,
-                          content: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              const Icon(Icons.cancel_rounded,
-                                  color: Colors.red),
-                              const SizedBox(width: 13),
-                              Text(state.errorMessage.toString(),
-                                  style: GoogleFonts.alegreya(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold))
-                            ],
-                          ),
-                          backgroundColor: Colors.black,
-                          behavior: SnackBarBehavior.floating,
-                        ));
-                      } else if (state.status.isSubmissionSuccess) {
-                        BlocProvider.of<UserDataCubit>(context)
-                            .getDataFromFirebase()
-                            .whenComplete(() {
-                          bool emptyState =
-                              BlocProvider.of<UserDataCubit>(context)
-                                  .state
-                                  .model
-                                  .isEmpty;
-                          if (emptyState) {
-                            Navigator.of(context)
-                                .pushReplacement(SlideIn(page: const UserDataPage()));
-                          } else {
-                            Navigator.of(context).pushReplacement(
-                                SlideIn(page: const HomePage()));
-                          }
-                        });
-                      }
-                    },
-                    builder: (BuildContext context, AuthState state) {
-                      return Align(
-                        alignment: Alignment.bottomRight,
-                        child: LoginButton(
-                            func: () {
-                              context.read<AuthCubit>().logInWithGoogle();
-                            },
-                            isSubmissionProgressing:
-                                state.status.isSubmissionInProgress ||
-                                    BlocProvider.of<UserDataCubit>(context)
-                                        .state
-                                        .status
-                                        .isSubmissionInProgress),
-                      );
-                    },
-                  )
-                ],
-              ),
-            );
-          }),
-        ));
+                    Expanded(
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                          image: AssetImage(
+                              'assets/images/login_illustration.png'),
+                        )),
+                      ),
+                    ),
+                    BlocConsumer<AuthCubit, AuthState>(
+                      listener: (BuildContext context, AuthState state) {
+                        if (state.status.isSubmissionFailure) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            padding: const EdgeInsets.all(10),
+                            width: state.errorMessage.toString().length > 21
+                                ? 280
+                                : 240,
+                            content: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                const Icon(Icons.cancel_rounded,
+                                    color: Colors.red),
+                                const SizedBox(width: 13),
+                                Text(state.errorMessage.toString(),
+                                    style: GoogleFonts.alegreya(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold))
+                              ],
+                            ),
+                            backgroundColor: Colors.black,
+                            behavior: SnackBarBehavior.floating,
+                          ));
+                        } else if (state.status.isSubmissionSuccess) {
+                          BlocProvider.of<UserDataCubit>(context)
+                              .getDataFromFirebase()
+                              .whenComplete(() {
+                            bool emptyState =
+                                BlocProvider.of<UserDataCubit>(context)
+                                    .state
+                                    .model
+                                    .isEmpty;
+                            if (emptyState) {
+                              Navigator.of(context).pushReplacement(SlideIn(
+                                  page: UserDataPage(
+                                model: userModel,
+                              )));
+                            } else {
+                              Navigator.of(context).pushReplacement(
+                                  SlideIn(page: const HomePage()));
+                            }
+                          });
+                        }
+                      },
+                      builder: (BuildContext context, AuthState state) {
+                        return Align(
+                          alignment: Alignment.bottomRight,
+                          child: LoginButton(
+                              func: () {
+                                context.read<AuthCubit>().logInWithGoogle();
+                              },
+                              isSubmissionProgressing:
+                                  state.status.isSubmissionInProgress ||
+                                      BlocProvider.of<UserDataCubit>(context)
+                                          .state
+                                          .status
+                                          .isSubmissionInProgress),
+                        );
+                      },
+                    )
+                  ],
+                ),
+              );
+            }),
+          ),
+        )
+
+        // MultiBlocProvider(
+
+        //   // ignore: always_specify_types
+        //   providers: [
+        //     BlocProvider<AuthCubit>(
+        //       create: (BuildContext context) =>
+        //           AuthCubit(context.read<AuthRepository>()),
+        //     ),
+        //     BlocProvider<UserDataCubit>(
+        //       create: (BuildContext context) => UserDataCubit(
+        //           userRepository: context.read<UserRepository>(),
+        //           model: userModel),
+        //     ),
+        //   ],
+        //   child: Builder(builder: (BuildContext context) {
+        //     return SafeArea(
+        //       child: Column(
+        //         mainAxisAlignment: MainAxisAlignment.start,
+        //         crossAxisAlignment: CrossAxisAlignment.start,
+        //         children: <Widget>[
+        //           Padding(
+        //             padding: const EdgeInsets.only(
+        //                 left: 25, right: 25, top: 40, bottom: 30),
+        //             child: Text('Learn to Code,\nWith other people.',
+        //                 textAlign: TextAlign.start,
+        //                 style: GoogleFonts.alegreya(
+        //                   color: const Color(0xFFF1F1F1),
+        //                   fontSize: 25,
+        //                   fontWeight: FontWeight.bold,
+        //                 )),
+        //           ),
+        //           Expanded(
+        //             child: Container(
+        //               decoration: const BoxDecoration(
+        //                   image: DecorationImage(
+        //                 image:
+        //                     AssetImage('assets/images/login_illustration.png'),
+        //               )),
+        //             ),
+        //           ),
+        //           BlocConsumer<AuthCubit, AuthState>(
+        //             listener: (BuildContext context, AuthState state) {
+        //               if (state.status.isSubmissionFailure) {
+        //                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        //                   padding: const EdgeInsets.all(10),
+        //                   width: state.errorMessage.toString().length > 21
+        //                       ? 280
+        //                       : 240,
+        //                   content: Row(
+        //                     mainAxisAlignment: MainAxisAlignment.center,
+        //                     children: <Widget>[
+        //                       const Icon(Icons.cancel_rounded,
+        //                           color: Colors.red),
+        //                       const SizedBox(width: 13),
+        //                       Text(state.errorMessage.toString(),
+        //                           style: GoogleFonts.alegreya(
+        //                               color: Colors.white,
+        //                               fontSize: 16,
+        //                               fontWeight: FontWeight.bold))
+        //                     ],
+        //                   ),
+        //                   backgroundColor: Colors.black,
+        //                   behavior: SnackBarBehavior.floating,
+        //                 ));
+        //               } else if (state.status.isSubmissionSuccess) {
+        //                 BlocProvider.of<UserDataCubit>(context)
+        //                     .getDataFromFirebase()
+        //                     .whenComplete(() {
+        //                   bool emptyState =
+        //                       BlocProvider.of<UserDataCubit>(context)
+        //                           .state
+        //                           .model
+        //                           .isEmpty;
+        //                   if (emptyState) {
+        //                     Navigator.of(context)
+        //                         .pushReplacement(SlideIn(page: const UserDataPage()));
+        //                   } else {
+        //                     Navigator.of(context).pushReplacement(
+        //                         SlideIn(page: const HomePage()));
+        //                   }
+        //                 });
+        //               }
+        //             },
+        //             builder: (BuildContext context, AuthState state) {
+        //               return Align(
+        //                 alignment: Alignment.bottomRight,
+        //                 child: LoginButton(
+        //                     func: () {
+        //                       context.read<AuthCubit>().logInWithGoogle();
+        //                     },
+        //                     isSubmissionProgressing:
+        //                         state.status.isSubmissionInProgress ||
+        //                             BlocProvider.of<UserDataCubit>(context)
+        //                                 .state
+        //                                 .status
+        //                                 .isSubmissionInProgress),
+        //               );
+        //             },
+        //           )
+        //         ],
+        //       ),
+        //     );
+        //   }),
+        // )
+        );
   }
 }

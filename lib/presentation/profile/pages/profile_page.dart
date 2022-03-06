@@ -1,4 +1,5 @@
 import 'package:badges/badges.dart';
+import 'package:devmet/constants/enums.dart';
 import 'package:devmet/presentation/anim/route_anim/slide_up.dart';
 import 'package:devmet/presentation/profile/pages/account_settings_page.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,7 @@ class ProfilePage extends StatelessWidget {
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget> [
-                 const UserAvatar(),
+                 const UserAvatar(type: UserAvatarType.non),
                       Text('Master Zero',
                           style: GoogleFonts.lato(
                               fontSize: 19,

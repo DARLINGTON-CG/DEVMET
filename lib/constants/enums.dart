@@ -1,1 +1,6 @@
-//App Status
+enum UserAvatarType
+{
+  file,
+  image,
+  non
+}

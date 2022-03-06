@@ -3,8 +3,9 @@ import 'package:equatable/equatable.dart';
 class UserModel extends Equatable {
   final String? email;
   final String? id;
+  final String? profileUrl;
 
-  const UserModel({ this.email, required this.id});
+  const UserModel({this.email, required this.id,this.profileUrl});
 
   static const UserModel empty = UserModel(id: '');
 

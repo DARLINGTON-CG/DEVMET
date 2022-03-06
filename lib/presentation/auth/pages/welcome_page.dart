@@ -1,3 +1,4 @@
+import 'package:devmet/constants/enums.dart';
 import 'package:devmet/presentation/anim/route_anim/slide_in.dart';
 import 'package:devmet/presentation/anim/widget_anim/slide_fade_anim.dart';
 import 'package:flutter/material.dart';
@@ -102,7 +103,7 @@ class _UserPageState extends State<WelcomePage>
             FadeSlideTransition(
                 additionalOffset: 0.0,
                 animation: _imageAvatarAnim,
-                child: const UserAvatar()),
+                child: const UserAvatar(type: UserAvatarType.non, url: "",)),
             FadeSlideTransition(
               animation: _nameAnim,
               additionalOffset: 0.0,

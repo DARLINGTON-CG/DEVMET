@@ -1,30 +1,50 @@
+import 'dart:io';
+
+import 'package:cached_network_image/cached_network_image.dart';
+
+import '../../constants/enums.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class UserAvatar extends StatelessWidget {
-  const UserAvatar({Key? key}) : super(key: key);
+  final File? file;
+  final String? url;
+  final UserAvatarType type;
 
-  
+  const UserAvatar({Key? key, this.file, this.url, required this.type})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
           color: Colors.grey.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(100)),
-      width: 100,
-      height: 100,
+          shape: BoxShape.circle),
+      width: 80,
+      height: 80,
       child: Center(
         child: Container(
-          width: 90,
-          height: 90,
-          child: Center(child: Text('TAP',style:GoogleFonts.lato(fontWeight: FontWeight.bold,color:Colors.white))),
-          decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.4),
-            // image: DecorationImage(
-            //     image: AssetImage("assets/images/user_avatar.png")),
-            borderRadius: BorderRadius.circular(100),
-          ),
+          width: 70,
+          height: 70,
+          child: type == UserAvatarType.non
+              ? const Center(
+                  child: Icon(
+                  Icons.camera_alt_rounded,
+                  color: Colors.white,
+                ))
+              : Container(),
+          decoration: type == UserAvatarType.non
+              ? BoxDecoration(
+                  color: Colors.grey.withOpacity(0.4),
+                  borderRadius: BorderRadius.circular(100),
+                )
+              : BoxDecoration(
+                  color: Colors.grey.withOpacity(0.4),
+                  borderRadius: BorderRadius.circular(100),
+
+                  image: type == UserAvatarType.file
+                      ? DecorationImage(image: FileImage(file!),fit: BoxFit.cover)
+                      : DecorationImage(
+                          image: CachedNetworkImageProvider(url!))),
         ),
       ),
     );
