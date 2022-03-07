@@ -103,7 +103,7 @@ class _UserPageState extends State<WelcomePage>
             FadeSlideTransition(
                 additionalOffset: 0.0,
                 animation: _imageAvatarAnim,
-                child: const UserAvatar(type: UserAvatarType.non, url: "",)),
+                child: const UserAvatar(type: UserAvatarType.non)),
             FadeSlideTransition(
               animation: _nameAnim,
               additionalOffset: 0.0,

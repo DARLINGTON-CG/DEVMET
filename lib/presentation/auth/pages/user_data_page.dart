@@ -46,110 +46,103 @@ class _UserDataPageState extends State<UserDataPage> {
           elevation: 0.0,
         ),
         body: SafeArea(
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: Text(
-                    'Enter your name and add a profile picture',
-                    textAlign: TextAlign.start,
-                    style: GoogleFonts.lato(fontSize: 16, color: Colors.grey),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        InkWell(
-                            onTap: () async {
-                              final XFile? _imageFilePicked = await _imagePicker
-                                  .pickImage(source: ImageSource.gallery);
-                              if (_imageFilePicked != null) {
-                                setState(() {
-                                  _wallpaper = File(_imageFilePicked.path);
-                                });
-                                // Navigator.pop(context);
-                                Future<void>.delayed(const Duration()).then(
-                                    (_) => Navigator.of(context)
-                                            .push(SlideUp(
-                                                page: EditPicturePage(
-                                                    picture: _wallpaper!)))
-                                            // ignore: always_specify_types
-                                            .then((value) {
-                                          setState(() {
-                                            _wallpaper = value;
-                                          });
-                                        }));
-                              }
-                            },
-                            child: UserAvatar(
-                              type: _wallpaper == null
-                                  ? UserAvatarType.non
-                                  : UserAvatarType.file,
-                              file: _wallpaper,
-                            )),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20),
-                            child: Column(children: <Widget>[
-                              TextField(
-                                style: GoogleFonts.lato(
-                                  color: Colors.white,
-                                  fontSize: 17,
-                                ),
-                                maxLength: 25,
-                                decoration: InputDecoration(
-                                  hintText: 'First Name (Required)',
-                                  counterText: '',
-                                  isCollapsed: true,
-                                  focusedBorder: const UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          width: 1, color: Colors.white)),
-                                  enabledBorder: const UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 1, color: Colors.grey),
-                                  ),
-                                  hintStyle: GoogleFonts.lato(
-                                    color: Colors.grey,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              TextField(
-                                style: GoogleFonts.lato(
-                                  color: Colors.white,
-                                  fontSize: 17,
-                                ),
-                                maxLength: 25,
-                                decoration: InputDecoration(
-                                  hintText: 'Last Name (Optional)',
-                                  counterText: '',
-                                  isCollapsed: true,
-                                  focusedBorder: const UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          width: 1, color: Colors.white)),
-                                  enabledBorder: const UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 1, color: Colors.grey),
-                                  ),
-                                  hintStyle: GoogleFonts.lato(
-                                    color: Colors.grey,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ),
-                            ]),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
+                  Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Text(
+                'Enter your name and add a profile picture',
+                textAlign: TextAlign.start,
+                style: GoogleFonts.lato(fontSize: 16, color: Colors.grey),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child:
+                  Row(crossAxisAlignment: CrossAxisAlignment.center, children: <
+                      Widget>[
+                InkWell(
+                    onTap: () async {
+                      final XFile? _imageFilePicked = await _imagePicker
+                          .pickImage(source: ImageSource.gallery);
+                      final File? _converted = File((_imageFilePicked!).path);
+                      Future<void>.delayed(const Duration()).then((_) =>
+                          Navigator.of(context)
+                              .push(SlideUp(
+                                  page: EditPicturePage(picture: _converted)))
+                              // ignore: always_specify_types
+                              .then((value) {
+                            setState(() {
+                              _wallpaper = value;
+                            });
+                          }));
+                    },
+                    child: UserAvatar(
+                      type: _wallpaper == null
+                          ? UserAvatarType.non
+                          : UserAvatarType.file,
+                      file: _wallpaper,
+                    )),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: Column(children: <Widget>[
+                      TextField(
+                        style: GoogleFonts.lato(
+                          color: Colors.white,
+                          fontSize: 17,
+                        ),
+                        maxLength: 25,
+                        decoration: InputDecoration(
+                          hintText: 'First Name (Required)',
+                          counterText: '',
+                          isCollapsed: true,
+                          focusedBorder: const UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(width: 1, color: Colors.white)),
+                          enabledBorder: const UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(width: 1, color: Colors.grey),
                           ),
-                        )
-                      ]),
-                ),
+                          hintStyle: GoogleFonts.lato(
+                            color: Colors.grey,
+                            fontSize: 17,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      TextField(
+                        style: GoogleFonts.lato(
+                          color: Colors.white,
+                          fontSize: 17,
+                        ),
+                        maxLength: 25,
+                        decoration: InputDecoration(
+                          hintText: 'Last Name (Optional)',
+                          counterText: '',
+                          isCollapsed: true,
+                          focusedBorder: const UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(width: 1, color: Colors.white)),
+                          enabledBorder: const UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(width: 1, color: Colors.grey),
+                          ),
+                          hintStyle: GoogleFonts.lato(
+                            color: Colors.grey,
+                            fontSize: 17,
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                )
               ]),
+            ),
+          ]),
         ),
       ),
     );

@@ -7,7 +7,6 @@ abstract class AppEvent extends Equatable {
   // ignore: always_specify_types
   List<Object> get props => [];
 }
-
 class AppLogoutRequested extends AppEvent {}
 
 class AppAccountDeletionRequested extends AppEvent {}

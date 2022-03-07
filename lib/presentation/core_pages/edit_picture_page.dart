@@ -1,14 +1,12 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:extended_image/extended_image.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_editor/image_editor.dart' hide ImageSource;
 
-import '../../bloc/user_data_bloc/user_cubit.dart';
 
 class EditPicturePage extends StatefulWidget {
-  final File picture;
+  final File? picture;
   const EditPicturePage({Key? key, required this.picture}) : super(key: key);
   @override
   _EditPicturePageState createState() => _EditPicturePageState();
